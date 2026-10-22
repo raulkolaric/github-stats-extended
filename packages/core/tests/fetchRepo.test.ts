@@ -32,7 +32,10 @@ const data_org = {
   },
 };
 
-const mock = new MockAdapter(axios);
+// axios 1.20 ships separate ESM/CJS typings and axios-mock-adapter 2.1.0 types against the CJS ones
+const mock = new MockAdapter(
+  axios as unknown as ConstructorParameters<typeof MockAdapter>[0],
+);
 
 afterEach(() => {
   mock.reset();
